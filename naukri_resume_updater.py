@@ -44,10 +44,10 @@ def internet_check():
 
 def resume_exist():
         if os.path.exists(os.path.join(os.getcwd(), 'resume.pdf')):
-        print("[+] Resume file loaded")
-    else:
-        print("[-] please put your resume in the current folder and rename as (resume.pdf)")
-        quit()
+            print("[+] Resume file loaded")
+        else:
+            print("[-] please put your resume in the current folder and rename as (resume.pdf)")
+            quit()
 
 
 def main():
