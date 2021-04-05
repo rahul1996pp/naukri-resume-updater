@@ -2,3 +2,4 @@ requests
 pyautogui
 webbot
 selenium
+glob
