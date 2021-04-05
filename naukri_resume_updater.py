@@ -4,6 +4,7 @@ from datetime import date
 import pyautogui
 import requests
 from webbot import Browser
+import glob
 
 
 def login():
@@ -43,11 +44,13 @@ def internet_check():
         print("[-] no internet")
 
 def resume_exist():
-        if os.path.exists(os.path.join(os.getcwd(), 'resume.pdf')):
-            print("[+] Resume file loaded")
-        else:
-            print("[-] please put your resume in the current folder and rename as (resume.pdf)")
-            quit()
+    resume_file = glob.glob("*.pdf") + glob.glob("*.docx")
+    resume_file = resume_file[0]
+    if os.path.exists(os.path.join(os.getcwd(), resume_file)):
+        print("[+] Resume file loaded")
+    else:
+        print("[-] please put your resume in the current folder and rename as (resume.pdf)")
+        quit()
 
 
 def main():
@@ -73,8 +76,9 @@ def if_login_true(web):
 
 
 def resume_upload(web):
+    global resume_file
     web.go_to("https://www.naukri.com/mnjuser/profile?id=&altresid")
-    resume = str(os.path.join(os.getcwd(), 'resume.pdf'))
+    resume = str(os.path.join(os.getcwd(), resume_file))
     console_tool()
     time.sleep(2)
     resume_xpath = '/html/body/div[2]/div/div/span/div/div/div/div/div/div[2]/div[3]/div[2]/div/div/div[2]/div[2]/div/div[1]/div[1]/section/div/div[1]/input'
